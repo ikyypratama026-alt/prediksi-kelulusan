@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradewise - Prediksi Kelulusan</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        body {
+            background: #f4f6fa;
+            color: #172033;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            height: 75px;
+            background: #ffffff;
+            border-bottom: 1px solid #e9edf3;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: 800;
+            color: #172b4d;
+            letter-spacing: -1px;
+        }
+
+        .brand span {
+            color: #3975e8;
+        }
+
+        .nav-right {
+            color: #718096;
+            font-size: 13px;
+        }
+
+        .main {
+            max-width: 1100px;
+            margin: 55px auto;
+            padding: 0 25px;
+        }
+
+        .heading {
+            margin-bottom: 30px;
+        }
+
+        .eyebrow {
+            color: #3975e8;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 34px;
+            letter-spacing: -1.2px;
+            color: #172b4d;
+            margin-bottom: 10px;
+        }
+
+        .heading p {
+            color: #718096;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1.5fr 0.85fr;
+            gap: 25px;
+            align-items: start;
+        }
+
+        .card {
+            background: #ffffff;
+            border: 1px solid #e8edf4;
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: 0 5px 20px rgba(30, 50, 80, 0.035);
+        }
+
+        .card-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #172b4d;
+            margin-bottom: 6px;
+        }
+
+        .card-desc {
+            font-size: 12px;
+            color: #8793a5;
+            margin-bottom: 25px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+        label {
+            display: block;
+            color: #34445e;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #dce3ed;
+            border-radius: 8px;
+            outline: none;
+            background: #fbfcfe;
+            font-size: 14px;
+            color: #172b4d;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #3975e8;
+            background: #ffffff;
+            box-shadow: 0 0 0 3px rgba(57, 117, 232, 0.1);
+        }
+
+        input::placeholder {
+            color: #b0bac8;
+        }
+
+        .full {
+            grid-column: 1 / -1;
+        }
+
+        .hint {
+            color: #9aa5b5;
+            font-size: 11px;
+            margin-top: 6px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #2866d7;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 5px;
+        }
+
+        button:hover {
+            background: #1d53b7;
+            transform: translateY(-1px);
+        }
+
+        .side-card {
+            background: #172b4d;
+            color: white;
+            border-radius: 14px;
+            padding: 27px;
+            margin-bottom: 18px;
+        }
+
+        .side-card .small-title {
+            color: #aabbd7;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 17px;
+        }
+
+        .side-card h2 {
+            font-size: 21px;
+            line-height: 1.4;
+            margin-bottom: 12px;
+        }
+
+        .side-card p {
+            color: #bdc9dc;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .method-card {
+            background: #ffffff;
+            border: 1px solid #e8edf4;
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .method-card h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+            color: #172b4d;
+        }
+
+        .method-card p {
+            color: #7c899c;
+            font-size: 12px;
+            line-height: 1.8;
+        }
+
+        .result {
+            margin-top: 24px;
+            padding: 20px;
+            border-radius: 10px;
+            background: #edf5ff;
+            border: 1px solid #d8e8ff;
+        }
+
+        .result-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #3975e8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .result h2 {
+            font-size: 24px;
+            color: #172b4d;
+            margin-bottom: 5px;
+        }
+
+        .result p {
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 25px;
+            color: #9aa5b5;
+            font-size: 11px;
+        }
+
+        @media (max-width: 800px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .main {
+                margin-top: 35px;
+            }
+
+            h1 {
+                font-size: 27px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .full {
+                grid-column: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="brand">grade<span>wise.</span></div>
+        <div class="nav-right">Academic Prediction System</div>
+    </nav>
+
+    <main class="main">
+
+        <section class="heading">
+            <div class="eyebrow">Student Academic Analysis</div>
+            <h1>Prediksi Kelulusan</h1>
+            <p>
+                Masukkan data akademik untuk mengetahui hasil prediksi
+                kelulusan berdasarkan model Decision Tree.
+            </p>
+        </section>
+
+        <section class="content">
+
+            <div class="card">
+                <div class="card-title">Data Akademik</div>
+                <div class="card-desc">
+                    Lengkapi informasi berikut sesuai data siswa.
+                </div>
+
+                <form method="POST">
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label>Nilai Semester 1 (G1)</label>
+                            <input type="number" name="g1"
+                                min="0" max="20"
+                                placeholder="Contoh: 15" required>
+                            <div class="hint">Rentang nilai 0–20</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Nilai Semester 2 (G2)</label>
+                            <input type="number" name="g2"
+                                min="0" max="20"
+                                placeholder="Contoh: 16" required>
+                            <div class="hint">Rentang nilai 0–20</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Waktu Belajar</label>
+                            <input type="number" name="studytime"
+                                min="1" max="4"
+                                placeholder="Masukkan 1–4" required>
+                            <div class="hint">1 = paling sedikit, 4 = paling banyak</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Jumlah Kegagalan</label>
+                            <input type="number" name="failures"
+                                min="0" max="4"
+                                placeholder="Contoh: 0" required>
+                            <div class="hint">Jumlah kegagalan mata pelajaran</div>
+                        </div>
+
+                        <div class="form-group full">
+                            <label>Jumlah Ketidakhadiran</label>
+                            <input type="number" name="absences"
+                                min="0"
+                                placeholder="Contoh: 2" required>
+                            <div class="hint">Total ketidakhadiran siswa</div>
+                        </div>
+
+                    </div>
+
+                    <button type="submit">Analisis Kelulusan</button>
+                </form>
+
+                {% if hasil is not none %}
+                <div class="result">
+                    <div class="result-label">Hasil Analisis Model</div>
+                    <h2>{{ hasil }}</h2>
+                    <p>Hasil prediksi berdasarkan data akademik yang dimasukkan.</p>
+                </div>
+                {% endif %}
+
+            </div>
+
+            <aside>
+                <div class="side-card">
+                    <div class="small-title">Tentang Sistem</div>
+                    <h2>Analisis akademik dengan pendekatan Machine Learning.</h2>
+                    <p>
+                        Sistem ini menggunakan algoritma Decision Tree
+                        untuk mengolah data nilai dan kebiasaan belajar
+                        sebagai dasar prediksi kelulusan.
+                    </p>
+                </div>
+
+                <div class="method-card">
+                    <h3>Metode yang Digunakan</h3>
+                    <p>
+                        <strong>Decision Tree Classifier</strong><br><br>
+                        Model melakukan klasifikasi berdasarkan beberapa
+                        variabel akademik, seperti nilai semester,
+                        waktu belajar, kegagalan mata pelajaran,
+                        dan jumlah ketidakhadiran.
+                    </p>
+                </div>
+            </aside>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        GradeWise · Student Academic Prediction System
+    </footer>
+
+</body>
+</html>
